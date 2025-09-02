@@ -1,14 +1,14 @@
 
 describe('Ermitazas homepage', () => {
   it.only('should open ermitazas.lt', () => {
-    cy.visit('https://www.ermitazas.lt/');    
+    cy.visit('https://www.ermitazas.lt/');
     cy.title().should('include', 'ermitazas.lt');
-    
+
     //accept cookies
     cy.get('#CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll', { timeout: 10000 })
       .should('be.visible')
       .click()
-    
+
     cy.get('button[aria-label="user button"]').first()
       .should('be.visible')
       .click()
@@ -16,7 +16,7 @@ describe('Ermitazas homepage', () => {
     cy.get('#input-login-form-email')
       .should('be.visible')
       .type('vardasvardauskas2022@gmail.com');
-      
+
     cy.get('#input-login-form-password')
       .should('be.visible')
       .type('slaptazodis2022');
@@ -39,7 +39,7 @@ describe('Ermitazas homepage', () => {
     cy.get('[data-testid="product-card"]')
       .contains('Skalbyklė BOSCH WGE03200SN')
       .click({ force: true });
-    
+
     cy.wait(2000);
 
     cy.get('[data-testid="add-to-cart-button"]', { timeout: 10000 })
@@ -60,7 +60,7 @@ describe('Ermitazas homepage', () => {
     cy.get('[data-testid="product-card"]')
       .contains('Diržas MAKITA, greita jungtis, su žiedu')
       .click({ force: true });
-    
+
     cy.wait(2000);
 
     cy.get('[data-testid="add-to-cart-button"]', { timeout: 10000 })
@@ -72,7 +72,7 @@ describe('Ermitazas homepage', () => {
       .should('be.visible')
       .click();
 
-      
+
 
     cy.get('#input-undefined')
       .type('Vonios spintelė CERSANIT MODUO 40 Balta{enter}', { delay: 50 })
@@ -80,7 +80,7 @@ describe('Ermitazas homepage', () => {
     cy.get('[data-testid="product-card"]')
       .contains('Vonios spintelė CERSANIT MODUO 40 Balta')
       .click({ force: true });
-    
+
     cy.wait(8000);
 
     cy.get('[data-testid="add-to-cart-button"]', { timeout: 10000 })
@@ -132,17 +132,19 @@ describe('Ermitazas homepage', () => {
       .eq(2)
       .should('have.value', '2');
 
-
     cy.get('[data-testid="cart-product-remove-button"]')
       .eq(2)
-      .click(); 
+      .click();
 
-    cy.get('[data-testid="cart-product-remove-button"]')  
+    cy.get('[data-testid="cart-product-remove-button"]')
       .eq(1)
-      .click(); 
+      .click();
 
     cy.get('[data-testid="cart-product-remove-button"]')
       .eq(0)
-      .click(); 
+      .click();
+
+    cy.contains('Krepšelis tuščias', { timeout: 10000 })
+      .should('be.visible');
   });
 });
